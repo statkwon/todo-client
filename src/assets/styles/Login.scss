@@ -3,12 +3,12 @@
 .login {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 
   margin: 108px 0 0 120px;
   max-width: 680px;
 
   &-text-m {
-    margin-bottom: 24px;
     font: {
       size: $font-size-m;
       weight: normal;
@@ -17,7 +17,6 @@
   }
 
   &-text-l {
-    margin-bottom: 16px;
     font: {
       size: $font-size-l;
       weight: bold;
