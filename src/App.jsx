@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'App.scss';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from 'components/common/Header.jsx';
-import TextField from 'components/common/TextField';
+import Login from './components/pages/Login';
+import 'App.scss';
 
 function App() {
   const navigate = useNavigate();
   const logoClickHandler = () => navigate('/');
-  const loginPlaceholder = 'Hint text';
+  const loginPlaceholder = 'Input your name';
   const [isFilled, setIsFilled] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef(null);
@@ -33,17 +33,24 @@ function App() {
   return (
     <div className="App">
       <Header logoClickHandler={logoClickHandler} />
-      <TextField
-        border={true}
-        placeholder={loginPlaceholder}
-        isFilled={isFilled}
-        isFocused={isFocused}
-        inputRef={inputRef}
-        changeHandler={changeHandler}
-        focusHandler={focusHandler}
-        blurHandler={blurHandler}
-        deleteBtnClickHandler={deleteBtnClickHandler}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Login
+              border={true}
+              placeholder={loginPlaceholder}
+              isFilled={isFilled}
+              isFocused={isFocused}
+              inputRef={inputRef}
+              changeHandler={changeHandler}
+              focusHandler={focusHandler}
+              blurHandler={blurHandler}
+              deleteBtnClickHandler={deleteBtnClickHandler}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }

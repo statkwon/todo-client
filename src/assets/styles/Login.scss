@@ -1,0 +1,27 @@
+@import "config";
+
+.login {
+  display: flex;
+  flex-direction: column;
+
+  margin: 108px 0 0 120px;
+  max-width: 680px;
+
+  &-text-m {
+    margin-bottom: 24px;
+    font: {
+      size: $font-size-m;
+      weight: normal;
+    }
+    line-height: 36px;
+  }
+
+  &-text-l {
+    margin-bottom: 16px;
+    font: {
+      size: $font-size-l;
+      weight: bold;
+    }
+    line-height: 72px;
+  }
+}
