@@ -1,0 +1,25 @@
+@import "config";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  margin: 72px 0 0 60px;
+  max-width: 90%;
+
+  &-text-m {
+    font: {
+      size: $font-size-m;
+      weight: normal;
+    }
+    line-height: 36px;
+  }
+
+  &-text-l {
+    font: {
+      size: $font-size-l;
+      weight: bold;
+    }
+  }
+}
