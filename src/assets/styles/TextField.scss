@@ -1,0 +1,50 @@
+@import "config";
+
+.textfield {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  height: 32px;
+
+  &-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    height: 32px;
+    border-bottom: 1px solid #CCCCCC;
+
+    & input {
+      flex: 1;
+      border: none;
+      height: 24px;
+      padding: 0;
+
+      color: #000000;
+      opacity: 0.4;
+      font: {
+        size: $font-size-s;
+        weight: normal;
+      }
+      line-height: 24px;
+
+      &:focus {
+        outline: none;
+        opacity: 1;
+      }
+    }
+  }
+
+  &-input-focused {
+    @extend .textfield-input;
+    border-bottom: 1px solid #2A82F0;
+  }
+
+  &-input-no-border {
+    @extend .textfield-input;
+    border-bottom: none;
+  }
+}
