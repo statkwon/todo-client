@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { headerDate } from 'utils/headerDate.js';
-import icTopbarMenu from 'assets/images/ic_topbar_menu.png';
 import 'assets/styles/Header.scss';
+import icTopbarMenu from 'assets/images/ic_topbar_menu.png';
 
 const Header = props => {
   const { logoClickHandler } = props;

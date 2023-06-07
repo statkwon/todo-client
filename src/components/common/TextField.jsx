@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import 'assets/styles/TextField.scss';
 import icDelete from 'assets/images/ic_delete.png';
 import icSendNor from 'assets/images/ic_send_nor.png';
 import icSendHov from 'assets/images/ic_send_hov.png';
-import PropTypes from 'prop-types';
 
 const TextField = props => {
   const {
