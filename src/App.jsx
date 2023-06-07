@@ -12,6 +12,7 @@ function App() {
   const homePlaceholder = 'Enter your task';
   const [isFilled, setIsFilled] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const formRef = useRef(null);
   const inputRef = useRef(null);
 
   const changeHandler = evt => {
@@ -39,6 +40,7 @@ function App() {
     setIsFocused(false);
     navigate('/Home');
   };
+  const submitBtnClickHandler = evt => submitHandler(evt);
 
   return (
     <div className="App">
@@ -52,12 +54,14 @@ function App() {
               placeholder={loginPlaceholder}
               isFilled={isFilled}
               isFocused={isFocused}
+              formRef={formRef}
               inputRef={inputRef}
               changeHandler={changeHandler}
               focusHandler={focusHandler}
               blurHandler={blurHandler}
               deleteBtnClickHandler={deleteBtnClickHandler}
               submitHandler={submitHandler}
+              submitBtnClickHandler={submitBtnClickHandler}
             />
           }
         />

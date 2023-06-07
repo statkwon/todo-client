@@ -11,12 +11,14 @@ const TextField = props => {
     placeholder,
     isFilled,
     isFocused,
+    formRef,
     inputRef,
     changeHandler,
     focusHandler,
     blurHandler,
     deleteBtnClickHandler,
     submitHandler,
+    submitBtnClickHandler,
   } = props;
   const textfieldInput = border
     ? isFocused
@@ -25,7 +27,7 @@ const TextField = props => {
     : 'textfield-input-no-border';
 
   return (
-    <form className="textfield" onSubmit={submitHandler}>
+    <form className="textfield" ref={formRef} onSubmit={submitHandler}>
       <div className={textfieldInput}>
         <input
           placeholder={placeholder}
@@ -36,7 +38,11 @@ const TextField = props => {
         />
         {isFilled && <img src={icDelete} alt="ic_delete.png" onClick={deleteBtnClickHandler} />}
       </div>
-      <img src={isFilled ? icSendHov : icSendNor} alt="ic_send.png" />
+      <img
+        src={isFilled && isFocused ? icSendHov : icSendNor}
+        alt="ic_send.png"
+        onClick={submitBtnClickHandler}
+      />
     </form>
   );
 };
@@ -46,12 +52,14 @@ TextField.propTypes = {
   placeholder: PropTypes.string,
   isFilled: PropTypes.bool,
   isFocused: PropTypes.bool,
+  formRef: PropTypes.object,
   inputRef: PropTypes.object,
   changeHandler: PropTypes.func,
   focusHandler: PropTypes.func,
   blurHandler: PropTypes.func,
   deleteBtnClickHandler: PropTypes.func,
   submitHandler: PropTypes.func,
+  submitBtnClickHandler: PropTypes.func,
 };
 
 export default TextField;

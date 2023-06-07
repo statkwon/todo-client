@@ -9,12 +9,14 @@ const Login = props => {
     placeholder,
     isFilled,
     isFocused,
+    formRef,
     inputRef,
     changeHandler,
     focusHandler,
     blurHandler,
     deleteBtnClickHandler,
     submitHandler,
+    submitBtnClickHandler,
   } = props;
 
   return (
@@ -30,12 +32,14 @@ const Login = props => {
           placeholder={placeholder}
           isFilled={isFilled}
           isFocused={isFocused}
+          formRef={formRef}
           inputRef={inputRef}
           changeHandler={changeHandler}
           focusHandler={focusHandler}
           blurHandler={blurHandler}
           deleteBtnClickHandler={deleteBtnClickHandler}
           submitHandler={submitHandler}
+          submitBtnClickHandler={submitBtnClickHandler}
         />
       </div>
     </div>
@@ -47,12 +51,14 @@ Login.propTypes = {
   placeholder: PropTypes.string,
   isFilled: PropTypes.bool,
   isFocused: PropTypes.bool,
+  formRef: PropTypes.object,
   inputRef: PropTypes.object,
   changeHandler: PropTypes.func,
   focusHandler: PropTypes.func,
   blurHandler: PropTypes.func,
   deleteBtnClickHandler: PropTypes.func,
   submitHandler: PropTypes.func,
+  submitBtnClickHandler: PropTypes.func,
 };
 
 export default Login;
