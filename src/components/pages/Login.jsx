@@ -19,23 +19,25 @@ const Login = props => {
 
   return (
     <div className="login">
-      <div className="login-text-m">
-        Welcome Newbie!!! <br />
-        MyTodo makes it easy to stay organized and manage your life.
+      <div className="login-text">
+        <div className="login-text-m">
+          Welcome Newbie!!! <br />
+          MyTodo makes it easy to stay organized and manage your life.
+        </div>
+        <div className="login-text-l">What is your name?</div>
+        <TextField
+          border={border}
+          placeholder={placeholder}
+          isFilled={isFilled}
+          isFocused={isFocused}
+          inputRef={inputRef}
+          changeHandler={changeHandler}
+          focusHandler={focusHandler}
+          blurHandler={blurHandler}
+          deleteBtnClickHandler={deleteBtnClickHandler}
+          submitHandler={submitHandler}
+        />
       </div>
-      <div className="login-text-l">What is your name?</div>
-      <TextField
-        border={border}
-        placeholder={placeholder}
-        isFilled={isFilled}
-        isFocused={isFocused}
-        inputRef={inputRef}
-        changeHandler={changeHandler}
-        focusHandler={focusHandler}
-        blurHandler={blurHandler}
-        deleteBtnClickHandler={deleteBtnClickHandler}
-        submitHandler={submitHandler}
-      />
     </div>
   );
 };
