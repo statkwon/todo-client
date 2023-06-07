@@ -15,10 +15,11 @@ const Home = props => {
     blurHandler,
     deleteBtnClickHandler,
   } = props;
+  const userName = sessionStorage.getItem('name');
 
   return (
     <div className="home">
-      <div className="home-text-m">Good afternoon, Lily.</div>
+      <div className="home-text-m">Good afternoon, {userName}.</div>
       <div className="home-text-m">You&apos;ve got</div>
       <div className="home-text-l">2 / 2</div>
       <div className="home-text-m">tasks Today!</div>

@@ -31,6 +31,14 @@ function App() {
     setIsFilled(false);
     inputRef.current.focus();
   };
+  const submitHandler = evt => {
+    evt.preventDefault();
+    sessionStorage.setItem('name', inputRef.current.value);
+    inputRef.current.value = '';
+    setIsFilled(false);
+    setIsFocused(false);
+    navigate('/Home');
+  };
 
   return (
     <div className="App">
@@ -49,6 +57,7 @@ function App() {
               focusHandler={focusHandler}
               blurHandler={blurHandler}
               deleteBtnClickHandler={deleteBtnClickHandler}
+              submitHandler={submitHandler}
             />
           }
         />

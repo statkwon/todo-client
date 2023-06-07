@@ -14,12 +14,13 @@ const Login = props => {
     focusHandler,
     blurHandler,
     deleteBtnClickHandler,
+    submitHandler,
   } = props;
 
   return (
     <div className="login">
       <div className="login-text-m">
-        Welcom Newbie!!! <br />
+        Welcome Newbie!!! <br />
         MyTodo makes it easy to stay organized and manage your life.
       </div>
       <div className="login-text-l">What is your name?</div>
@@ -33,6 +34,7 @@ const Login = props => {
         focusHandler={focusHandler}
         blurHandler={blurHandler}
         deleteBtnClickHandler={deleteBtnClickHandler}
+        submitHandler={submitHandler}
       />
     </div>
   );
@@ -48,6 +50,7 @@ Login.propTypes = {
   focusHandler: PropTypes.func,
   blurHandler: PropTypes.func,
   deleteBtnClickHandler: PropTypes.func,
+  submitHandler: PropTypes.func,
 };
 
 export default Login;

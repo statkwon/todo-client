@@ -16,6 +16,7 @@ const TextField = props => {
     focusHandler,
     blurHandler,
     deleteBtnClickHandler,
+    submitHandler,
   } = props;
   const textfieldInput = border
     ? isFocused
@@ -24,7 +25,7 @@ const TextField = props => {
     : 'textfield-input-no-border';
 
   return (
-    <form className="textfield">
+    <form className="textfield" onSubmit={submitHandler}>
       <div className={textfieldInput}>
         <input
           placeholder={placeholder}
@@ -50,6 +51,7 @@ TextField.propTypes = {
   focusHandler: PropTypes.func,
   blurHandler: PropTypes.func,
   deleteBtnClickHandler: PropTypes.func,
+  submitHandler: PropTypes.func,
 };
 
 export default TextField;
