@@ -1,7 +1,8 @@
 import React from 'react';
 import 'assets/styles/Home.scss';
 import PropTypes from 'prop-types';
-import TextField from '../common/TextField';
+import TextField from 'components/common/TextField.jsx';
+import NoTask from 'components/pages/Home/NoTask.jsx';
 
 const Home = props => {
   const {
@@ -19,21 +20,24 @@ const Home = props => {
 
   return (
     <div className="home">
-      <div className="home-text-m">Good afternoon, {userName}.</div>
-      <div className="home-text-m">You&apos;ve got</div>
-      <div className="home-text-l">2 / 2</div>
-      <div className="home-text-m">tasks Today!</div>
-      <TextField
-        border={border}
-        placeholder={placeholder}
-        isFilled={isFilled}
-        isFocused={isFocused}
-        inputRef={inputRef}
-        changeHandler={changeHandler}
-        focusHandler={focusHandler}
-        blurHandler={blurHandler}
-        deleteBtnClickHandler={deleteBtnClickHandler}
-      />
+      <div className="home-text">
+        <div className="home-text-m">Good afternoon, {userName}.</div>
+        <div className="home-text-m">You&apos;ve got</div>
+        <div className="home-text-l">2 / 2</div>
+        <div className="home-text-m">tasks Today!</div>
+        <TextField
+          border={border}
+          placeholder={placeholder}
+          isFilled={isFilled}
+          isFocused={isFocused}
+          inputRef={inputRef}
+          changeHandler={changeHandler}
+          focusHandler={focusHandler}
+          blurHandler={blurHandler}
+          deleteBtnClickHandler={deleteBtnClickHandler}
+        />
+      </div>
+      <NoTask />
     </div>
   );
 };
