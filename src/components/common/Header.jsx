@@ -5,12 +5,13 @@ import icTopbarMenu from 'assets/images/ic_topbar_menu.png';
 import 'assets/styles/Header.scss';
 
 const Header = props => {
-  const { clickHandler } = props;
+  const { logoClickHandler } = props;
+
   return (
     <div className="header">
       <div className="header-left">
-        <img src={icTopbarMenu} alt="ic_topbar_menu.png" onClick={clickHandler} />
-        <div className="header-left-service" onClick={clickHandler}>
+        <img src={icTopbarMenu} alt="ic_topbar_menu.png" onClick={logoClickHandler} />
+        <div className="header-left-service" onClick={logoClickHandler}>
           My Todo
         </div>
       </div>
@@ -23,7 +24,7 @@ const Header = props => {
 };
 
 Header.propTypes = {
-  clickHandler: PropTypes.func,
+  logoClickHandler: PropTypes.func,
 };
 
 export default Header;
