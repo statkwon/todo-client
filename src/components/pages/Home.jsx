@@ -15,6 +15,8 @@ const Home = props => {
     focusHandler,
     blurHandler,
     deleteBtnClickHandler,
+    submitHandler,
+    submitBtnClickHandler,
   } = props;
   const userName = sessionStorage.getItem('name');
 
@@ -35,6 +37,8 @@ const Home = props => {
           focusHandler={focusHandler}
           blurHandler={blurHandler}
           deleteBtnClickHandler={deleteBtnClickHandler}
+          submitHandler={submitHandler}
+          submitBtnClickHandler={submitBtnClickHandler}
         />
       </div>
       <NoTask />
@@ -52,6 +56,8 @@ Home.propTypes = {
   focusHandler: PropTypes.func,
   blurHandler: PropTypes.func,
   deleteBtnClickHandler: PropTypes.func,
+  submitHandler: PropTypes.func,
+  submitBtnClickHandler: PropTypes.func,
 };
 
 export default Home;

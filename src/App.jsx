@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from 'components/common/Header.jsx';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
+import { post } from 'apis/httpActions.js';
 import 'App.scss';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [isFocused, setIsFocused] = useState(false);
   const formRef = useRef(null);
   const inputRef = useRef(null);
+  const [tasks, setTasks] = useState([]);
 
   const changeHandler = evt => {
     if (evt.target.value.trim() !== '') setIsFilled(true);
@@ -32,15 +34,34 @@ function App() {
     setIsFilled(false);
     inputRef.current.focus();
   };
-  const submitHandler = evt => {
+  const loginSubmitHandler = evt => {
     evt.preventDefault();
-    sessionStorage.setItem('name', inputRef.current.value);
-    inputRef.current.value = '';
-    setIsFilled(false);
-    setIsFocused(false);
-    navigate('/Home');
+    if (inputRef.current.value.trim() !== '') {
+      sessionStorage.setItem('name', inputRef.current.value);
+      inputRef.current.value = '';
+      setIsFilled(false);
+      inputRef.current.blur();
+      navigate('/Home');
+    }
   };
-  const submitBtnClickHandler = evt => submitHandler(evt);
+  const loginSubmitBtnClickHandler = evt => loginSubmitHandler(evt);
+  const homeSubmitHandler = evt => {
+    evt.preventDefault();
+    if (inputRef.current.value.trim() !== '') {
+      createTask(inputRef.current.value);
+      inputRef.current.value = '';
+      setIsFilled(false);
+    }
+  };
+  const homeSubmitBtnClickHandler = evt => homeSubmitHandler(evt);
+  const createTask = async content => {
+    try {
+      const resp = await post(content);
+      setTasks(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="App">
@@ -60,8 +81,8 @@ function App() {
               focusHandler={focusHandler}
               blurHandler={blurHandler}
               deleteBtnClickHandler={deleteBtnClickHandler}
-              submitHandler={submitHandler}
-              submitBtnClickHandler={submitBtnClickHandler}
+              submitHandler={loginSubmitHandler}
+              submitBtnClickHandler={loginSubmitBtnClickHandler}
             />
           }
         />
@@ -78,6 +99,9 @@ function App() {
               focusHandler={focusHandler}
               blurHandler={blurHandler}
               deleteBtnClickHandler={deleteBtnClickHandler}
+              submitHandler={homeSubmitHandler}
+              submitBtnClickHandler={homeSubmitBtnClickHandler}
+              tasks={tasks}
             />
           }
         />
