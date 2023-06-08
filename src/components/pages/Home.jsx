@@ -3,6 +3,7 @@ import 'assets/styles/Home.scss';
 import PropTypes from 'prop-types';
 import TextField from 'components/common/TextField.jsx';
 import NoTask from 'components/pages/Home/NoTask.jsx';
+import TaskList from 'components/pages/Home/TaskList.jsx';
 
 const Home = props => {
   const {
@@ -42,7 +43,7 @@ const Home = props => {
           submitBtnClickHandler={submitBtnClickHandler}
         />
       </div>
-      <NoTask />
+      {tasks.length ? <TaskList /> : <NoTask />}
     </div>
   );
 };
