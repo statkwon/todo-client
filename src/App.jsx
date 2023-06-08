@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from 'components/common/Header.jsx';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
-import { post } from 'apis/httpActions.js';
+import { get, post } from 'apis/httpActions.js';
 import 'App.scss';
 
 function App() {
@@ -16,6 +16,10 @@ function App() {
   const formRef = useRef(null);
   const inputRef = useRef(null);
   const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    readTasks();
+  }, []);
 
   const changeHandler = evt => {
     if (evt.target.value.trim() !== '') setIsFilled(true);
@@ -57,6 +61,14 @@ function App() {
   const createTask = async content => {
     try {
       const resp = await post(content);
+      setTasks(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const readTasks = async () => {
+    try {
+      const resp = await get();
       setTasks(resp.data);
     } catch (error) {
       console.log(error);

@@ -8,3 +8,5 @@ export const post = content => {
   const sendData = { content };
   return instance.post('/tasks', sendData, { headers: { 'Content-Type': 'application/json' } });
 };
+
+export const get = () => instance.get('/tasks');

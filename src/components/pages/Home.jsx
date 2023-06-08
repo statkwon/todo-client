@@ -17,6 +17,7 @@ const Home = props => {
     deleteBtnClickHandler,
     submitHandler,
     submitBtnClickHandler,
+    tasks,
   } = props;
   const userName = sessionStorage.getItem('name');
 
@@ -25,7 +26,7 @@ const Home = props => {
       <div className="home-text">
         <div className="home-text-m">Good afternoon, {userName}.</div>
         <div className="home-text-m">You&apos;ve got</div>
-        <div className="home-text-l">2 / 2</div>
+        <div className="home-text-l">0 / {tasks.length}</div>
         <div className="home-text-m">tasks Today!</div>
         <TextField
           border={border}
@@ -58,6 +59,7 @@ Home.propTypes = {
   deleteBtnClickHandler: PropTypes.func,
   submitHandler: PropTypes.func,
   submitBtnClickHandler: PropTypes.func,
+  tasks: PropTypes.array,
 };
 
 export default Home;
