@@ -43,7 +43,7 @@ const Home = props => {
           submitBtnClickHandler={submitBtnClickHandler}
         />
       </div>
-      {tasks.length ? <TaskList /> : <NoTask />}
+      {tasks.length ? <TaskList tasks={tasks} /> : <NoTask />}
     </div>
   );
 };
