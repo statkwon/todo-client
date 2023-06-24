@@ -5,21 +5,7 @@ import TextField from 'components/common/TextField.jsx';
 import NoTask from 'components/pages/Home/NoTask.jsx';
 import TaskList from 'components/pages/Home/TaskList.jsx';
 
-const Home = props => {
-  const {
-    border,
-    placeholder,
-    isFilled,
-    isFocused,
-    inputRef,
-    changeHandler,
-    focusHandler,
-    blurHandler,
-    deleteBtnClickHandler,
-    submitHandler,
-    submitBtnClickHandler,
-    tasks,
-  } = props;
+const Home = ({ placeholder, tasks, customSubmitHandler, updateTask }) => {
   const userName = sessionStorage.getItem('name');
 
   return (
@@ -29,38 +15,18 @@ const Home = props => {
         <div className="home-text-m">You&apos;ve got</div>
         <div className="home-text-l">0 / {tasks.length}</div>
         <div className="home-text-m">tasks Today!</div>
-        <TextField
-          border={border}
-          placeholder={placeholder}
-          isFilled={isFilled}
-          isFocused={isFocused}
-          inputRef={inputRef}
-          changeHandler={changeHandler}
-          focusHandler={focusHandler}
-          blurHandler={blurHandler}
-          deleteBtnClickHandler={deleteBtnClickHandler}
-          submitHandler={submitHandler}
-          submitBtnClickHandler={submitBtnClickHandler}
-        />
+        <TextField placeholder={placeholder} customSubmitHandler={customSubmitHandler} />
       </div>
-      {tasks.length ? <TaskList tasks={tasks} /> : <NoTask />}
+      {tasks.length ? <TaskList tasks={tasks} updateTask={updateTask} /> : <NoTask />}
     </div>
   );
 };
 
 Home.propTypes = {
-  border: PropTypes.bool,
   placeholder: PropTypes.string,
-  isFilled: PropTypes.bool,
-  isFocused: PropTypes.bool,
-  inputRef: PropTypes.object,
-  changeHandler: PropTypes.func,
-  focusHandler: PropTypes.func,
-  blurHandler: PropTypes.func,
-  deleteBtnClickHandler: PropTypes.func,
-  submitHandler: PropTypes.func,
-  submitBtnClickHandler: PropTypes.func,
   tasks: PropTypes.array,
+  customSubmitHandler: PropTypes.func,
+  updateTask: PropTypes.func,
 };
 
 export default Home;

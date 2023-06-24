@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from 'components/common/Header.jsx';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
-import { get, post } from 'apis/httpActions.js';
+import { get, patch, post } from 'apis/httpActions.js';
 import 'App.scss';
 
 function App() {
@@ -11,53 +11,16 @@ function App() {
   const logoClickHandler = () => navigate('/');
   const loginPlaceholder = 'Input your name';
   const homePlaceholder = 'Enter your task';
-  const [isFilled, setIsFilled] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const formRef = useRef(null);
-  const inputRef = useRef(null);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     readTasks();
   }, []);
-
-  const changeHandler = evt => {
-    if (evt.target.value.trim() !== '') setIsFilled(true);
-    else setIsFilled(false);
-  };
-  const focusHandler = evt => {
-    evt.target.placeholder = '';
-    setIsFocused(true);
-  };
-  const blurHandler = (evt, placeholder) => {
-    evt.target.placeholder = placeholder;
-    setIsFocused(false);
-  };
-  const deleteBtnClickHandler = () => {
-    inputRef.current.value = '';
-    setIsFilled(false);
-    inputRef.current.focus();
-  };
   const loginSubmitHandler = evt => {
-    evt.preventDefault();
-    if (inputRef.current.value.trim() !== '') {
-      sessionStorage.setItem('name', inputRef.current.value);
-      inputRef.current.value = '';
-      setIsFilled(false);
-      inputRef.current.blur();
-      navigate('/Home');
-    }
+    sessionStorage.setItem('name', evt.target.elements[0].value);
+    navigate('/Home');
   };
-  const loginSubmitBtnClickHandler = evt => loginSubmitHandler(evt);
-  const homeSubmitHandler = evt => {
-    evt.preventDefault();
-    if (inputRef.current.value.trim() !== '') {
-      createTask(inputRef.current.value);
-      inputRef.current.value = '';
-      setIsFilled(false);
-    }
-  };
-  const homeSubmitBtnClickHandler = evt => homeSubmitHandler(evt);
+  const homeSubmitHandler = evt => createTask(evt.target.elements[0].value);
   const createTask = async content => {
     try {
       const resp = await post(content);
@@ -74,6 +37,14 @@ function App() {
       console.log(error);
     }
   };
+  const updateTask = async (id, content, isDone) => {
+    try {
+      const resp = await patch(id, content, isDone);
+      setTasks(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="App">
@@ -82,38 +53,17 @@ function App() {
         <Route
           path="/"
           element={
-            <Login
-              border={true}
-              placeholder={loginPlaceholder}
-              isFilled={isFilled}
-              isFocused={isFocused}
-              formRef={formRef}
-              inputRef={inputRef}
-              changeHandler={changeHandler}
-              focusHandler={focusHandler}
-              blurHandler={blurHandler}
-              deleteBtnClickHandler={deleteBtnClickHandler}
-              submitHandler={loginSubmitHandler}
-              submitBtnClickHandler={loginSubmitBtnClickHandler}
-            />
+            <Login placeholder={loginPlaceholder} customSubmitHandler={loginSubmitHandler} />
           }
         />
         <Route
           path="/Home"
           element={
             <Home
-              border={true}
               placeholder={homePlaceholder}
-              isFilled={isFilled}
-              isFocused={isFocused}
-              inputRef={inputRef}
-              changeHandler={changeHandler}
-              focusHandler={focusHandler}
-              blurHandler={blurHandler}
-              deleteBtnClickHandler={deleteBtnClickHandler}
-              submitHandler={homeSubmitHandler}
-              submitBtnClickHandler={homeSubmitBtnClickHandler}
               tasks={tasks}
+              customSubmitHandler={homeSubmitHandler}
+              updateTask={updateTask}
             />
           }
         />

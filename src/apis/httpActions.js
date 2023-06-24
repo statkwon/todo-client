@@ -10,3 +10,8 @@ export const post = content => {
 };
 
 export const get = () => instance.get('/tasks');
+
+export const patch = (id, content, isDone) => {
+  const sendData = { id, content, isDone };
+  return instance.patch('/tasks', sendData, { headers: { 'Content-Type': 'application/json' } });
+};

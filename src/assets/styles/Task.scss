@@ -5,6 +5,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 
   width: 100%;
   height: 60px;
@@ -12,9 +13,37 @@
   box-sizing: border-box;
   background: #FFFFFF;
 
-  &-left {
+  &-checkbox {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+
+    &:hover {
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &:checked {
+      &:hover::before {
+        background-color: rgba(42, 130, 240, 0.1);
+      }
+    }
+  }
+
+  &-content {
+    flex: 1;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 18px;
 
@@ -24,57 +53,35 @@
     }
     line-height: 24px;
 
-    &-checkbox {
-      width: 16px;
-      height: 16px;
-      margin: 0;
-
-      &:hover {
-        position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          top: -6px;
-          left: -6px;
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background-color: rgba(0, 0, 0, 0.1);
-        }
+    &-date {
+      color: rgba(0, 0, 0, 0.6);
+      font: {
+        size: $font-size-xxs;
+        weight: normal;
       }
+      line-height: 18px;
+    }
 
-      &:checked {
-        &:hover::before {
-          background-color: rgba(42, 130, 240, 0.1);
-        }
-      }
+    &:hover {
+      cursor: text;
     }
   }
 
-  &-right {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
+  &-delete-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 100px;
+    background-image: url($url-images + "btn_remove_nor.png");
 
-    color: rgba(0, 0, 0, 0.6);
-    font: {
-      size: $font-size-xxs;
-      weight: normal;
+    &:hover {
+      background-image: url($url-images + "btn_remove_hov.png");
     }
-    line-height: 18px;
+  }
 
-    &-delete-btn {
-      width: 28px;
-      height: 28px;
-      padding: 0;
-      border: none;
-      border-radius: 100px;
-      background-image: url($url-images + "btn_remove_nor.png");
-
-      &:hover {
-        background-image: url($url-images + "btn_remove_hov.png");
-      }
-    }
+  &-update {
+    @extend .task;
+    border: 1px solid #2A82F0;
   }
 }
