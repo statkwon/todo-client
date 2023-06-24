@@ -4,6 +4,18 @@ import 'assets/styles/TextField.scss';
 import icDelete from 'assets/images/ic_delete.png';
 import icSendNor from 'assets/images/ic_send_nor.png';
 import icSendHov from 'assets/images/ic_send_hov.png';
+import styled from 'styled-components';
+
+const StyledBtn = styled.button.attrs(props => ({
+  type: props.type,
+}))`
+  width: ${props => props.size};
+  height: ${props => props.size};
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  background-image: url(${props => props.src});
+`;
 
 const TextField = ({ value, placeholder, customSubmitHandler }) => {
   const [isFilled, setIsFilled] = useState(false);
@@ -41,7 +53,6 @@ const TextField = ({ value, placeholder, customSubmitHandler }) => {
     setIsFilled(false);
     inputRef.current.focus();
   };
-  const submitBtnClickHandler = evt => submitHandler(evt);
 
   const textfieldInput = value
     ? 'textfield-input-no-border'
@@ -60,14 +71,10 @@ const TextField = ({ value, placeholder, customSubmitHandler }) => {
           onBlur={blurHandler}
         />
         {!value && isFilled && (
-          <img src={icDelete} alt="ic_delete.png" onClick={deleteBtnClickHandler} />
+          <StyledBtn type="button" size="20px" src={icDelete} onClick={deleteBtnClickHandler} />
         )}
       </div>
-      <img
-        src={isFilled && isFocused ? icSendHov : icSendNor}
-        alt="ic_send.png"
-        onClick={submitBtnClickHandler}
-      />
+      <StyledBtn type="submit" size="24px" src={isFilled && isFocused ? icSendHov : icSendNor} />
     </form>
   );
 };
