@@ -15,3 +15,7 @@ export const patch = (id, content, isDone) => {
   const sendData = { id, content, isDone };
   return instance.patch('/tasks', sendData, { headers: { 'Content-Type': 'application/json' } });
 };
+
+export const deleteOne = id => {
+  return instance.delete(`/tasks/${id}`);
+};

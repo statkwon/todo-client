@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from 'components/common/Header.jsx';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
-import { get, patch, post } from 'apis/httpActions.js';
+import { deleteOne, get, patch, post } from 'apis/httpActions.js';
 import 'App.scss';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     readTasks();
-  }, []);
+  }, [tasks]);
   const loginSubmitHandler = evt => {
     sessionStorage.setItem('name', evt.target.elements[0].value);
     navigate('/Home');
@@ -45,6 +45,14 @@ function App() {
       console.log(error);
     }
   };
+  const removeTask = async id => {
+    try {
+      const resp = await deleteOne(id);
+      setTasks(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="App">
@@ -64,6 +72,7 @@ function App() {
               tasks={tasks}
               customSubmitHandler={homeSubmitHandler}
               updateTask={updateTask}
+              removeTask={removeTask}
             />
           }
         />

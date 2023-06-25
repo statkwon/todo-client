@@ -5,7 +5,7 @@ import TextField from 'components/common/TextField.jsx';
 import NoTask from 'components/pages/Home/NoTask.jsx';
 import TaskList from 'components/pages/Home/TaskList.jsx';
 
-const Home = ({ placeholder, tasks, customSubmitHandler, updateTask }) => {
+const Home = ({ placeholder, tasks, customSubmitHandler, updateTask, removeTask }) => {
   const userName = sessionStorage.getItem('name');
 
   return (
@@ -17,7 +17,11 @@ const Home = ({ placeholder, tasks, customSubmitHandler, updateTask }) => {
         <div className="home-text-m">tasks Today!</div>
         <TextField placeholder={placeholder} customSubmitHandler={customSubmitHandler} />
       </div>
-      {tasks.length ? <TaskList tasks={tasks} updateTask={updateTask} /> : <NoTask />}
+      {tasks.length ? (
+        <TaskList tasks={tasks} updateTask={updateTask} removeTask={removeTask} />
+      ) : (
+        <NoTask />
+      )}
     </div>
   );
 };
@@ -27,6 +31,7 @@ Home.propTypes = {
   tasks: PropTypes.array,
   customSubmitHandler: PropTypes.func,
   updateTask: PropTypes.func,
+  removeTask: PropTypes.func,
 };
 
 export default Home;
