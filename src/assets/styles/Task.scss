@@ -65,6 +65,12 @@
     &:hover {
       cursor: text;
     }
+
+    &-done {
+      @extend .task-content;
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
   }
 
   &-delete-btn {

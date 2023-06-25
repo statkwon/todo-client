@@ -7,16 +7,24 @@ import 'assets/styles/Task.scss';
 const Task = ({ task, updateTask }) => {
   const [isUpdate, setIsUpdate] = useState(false);
 
-  const clickHandler = () => setIsUpdate(true);
+  const changeHandler = () => updateTask(task.id, task.content, !task.isDone);
+  const clickHandler = () => {
+    if (!task.isDone) setIsUpdate(true);
+  };
   const taskSubmitHandler = evt => {
     updateTask(task.id, evt.target.elements[0].value, task.isDone);
     setIsUpdate(false);
   };
   const taskDiv = !isUpdate ? (
     <>
-      <input className="task-checkbox" type="checkbox"></input>
+      <input
+        className="task-checkbox"
+        type="checkbox"
+        checked={task.isDone}
+        onChange={changeHandler}
+      ></input>
       <div className="task-content" onClick={clickHandler}>
-        {task.content}
+        <div className={task.isDone ? 'task-content-done' : 'task-content'}>{task.content}</div>
         <div className="task-content-date">{taskDate(task.modifiedDate)}</div>
       </div>
       <button className="task-delete-btn"></button>
