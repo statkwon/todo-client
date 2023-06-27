@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from 'components/common/Header.jsx';
-import Login from './components/pages/Login';
-import Home from './components/pages/Home';
-import { deleteOne, get, patch, post } from 'apis/httpActions.js';
+import Login from 'components/pages/Login';
+import Home from 'components/pages/Home/Home';
+import { deleteAll, deleteOne, get, patch, post } from 'apis/httpActions.js';
 import 'App.scss';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     readTasks();
-  }, [tasks]);
+  }, []);
   const loginSubmitHandler = evt => {
     sessionStorage.setItem('name', evt.target.elements[0].value);
     navigate('/Home');
@@ -45,9 +45,17 @@ function App() {
       console.log(error);
     }
   };
-  const removeTask = async id => {
+  const deleteTask = async id => {
     try {
       const resp = await deleteOne(id);
+      setTasks(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const deleteTasks = async () => {
+    try {
+      const resp = await deleteAll();
       setTasks(resp.data);
     } catch (error) {
       console.log(error);
@@ -72,7 +80,8 @@ function App() {
               tasks={tasks}
               customSubmitHandler={homeSubmitHandler}
               updateTask={updateTask}
-              removeTask={removeTask}
+              removeTask={deleteTask}
+              removeTasks={deleteTasks}
             />
           }
         />

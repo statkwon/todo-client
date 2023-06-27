@@ -19,3 +19,7 @@ export const patch = (id, content, isDone) => {
 export const deleteOne = id => {
   return instance.delete(`/tasks/${id}`);
 };
+
+export const deleteAll = () => {
+  return instance.delete('/tasks');
+};
