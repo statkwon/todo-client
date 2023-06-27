@@ -6,7 +6,15 @@ import NoTask from 'components/pages/Home/NoTask.jsx';
 import TaskList from 'components/pages/Home/TaskList.jsx';
 import { greeting } from '../../../utils/greeting';
 
-const Home = ({ placeholder, tasks, customSubmitHandler, updateTask, removeTask, removeTasks }) => {
+const Home = ({
+  placeholder,
+  tasks,
+  left,
+  customSubmitHandler,
+  updateTask,
+  removeTask,
+  removeTasks,
+}) => {
   const userName = sessionStorage.getItem('name');
 
   return (
@@ -16,7 +24,9 @@ const Home = ({ placeholder, tasks, customSubmitHandler, updateTask, removeTask,
           Good {greeting()}, {userName}.
         </div>
         <div className="home-text-m">You&apos;ve got</div>
-        <div className="home-text-l">0 / {tasks.length}</div>
+        <div className="home-text-l">
+          {left} / {tasks.length}
+        </div>
         <div className="home-text-m">tasks Today!</div>
         <TextField placeholder={placeholder} customSubmitHandler={customSubmitHandler} />
       </div>
@@ -37,6 +47,7 @@ const Home = ({ placeholder, tasks, customSubmitHandler, updateTask, removeTask,
 Home.propTypes = {
   placeholder: PropTypes.string,
   tasks: PropTypes.array,
+  left: PropTypes.number,
   customSubmitHandler: PropTypes.func,
   updateTask: PropTypes.func,
   removeTask: PropTypes.func,

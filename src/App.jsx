@@ -12,10 +12,18 @@ function App() {
   const loginPlaceholder = 'Input your name';
   const homePlaceholder = 'Enter your task';
   const [tasks, setTasks] = useState([]);
+  const [left, setLeft] = useState(tasks.length);
 
   useEffect(() => {
     readTasks();
   }, []);
+  useEffect(() => {
+    setLeft(tasks.length);
+    tasks.forEach(task => {
+      if (task.isDone) setLeft(c => c - 1);
+    });
+  }, [tasks]);
+
   const loginSubmitHandler = evt => {
     sessionStorage.setItem('name', evt.target.elements[0].value);
     navigate('/Home');
@@ -78,6 +86,7 @@ function App() {
             <Home
               placeholder={homePlaceholder}
               tasks={tasks}
+              left={left}
               customSubmitHandler={homeSubmitHandler}
               updateTask={updateTask}
               removeTask={deleteTask}
