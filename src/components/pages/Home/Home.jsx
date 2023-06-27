@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TextField from 'components/common/TextField.jsx';
 import NoTask from 'components/pages/Home/NoTask.jsx';
 import TaskList from 'components/pages/Home/TaskList.jsx';
-import { greeting } from '../../../utils/greeting';
+import { greeting } from 'utils/greeting';
 
 const Home = ({
   placeholder,
