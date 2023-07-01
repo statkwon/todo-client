@@ -1,0 +1,30 @@
+.root {
+  position: absolute;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px;
+  width: 120px;
+  height: 40px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px;
+  width: 120px;
+  height: 40px;
+
+  &.is-selected {
+    color: #2AB2F0;
+    background: rgba(42, 130, 240, 0.1);
+  }
+}

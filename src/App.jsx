@@ -13,6 +13,7 @@ function App() {
   const homePlaceholder = 'Enter your task';
   const [tasks, setTasks] = useState([]);
   const [left, setLeft] = useState(tasks.length);
+  const [option, setOption] = useState('Oldest');
 
   useEffect(() => {
     readTasks();
@@ -29,6 +30,11 @@ function App() {
     navigate('/Home');
   };
   const homeSubmitHandler = evt => createTask(evt.target.elements[0].value);
+  const dropdownChangeHandler = evt => {
+    setOption(evt.value);
+    sortTasks(option);
+  };
+
   const createTask = async content => {
     try {
       const resp = await post(content);
@@ -69,6 +75,14 @@ function App() {
       console.log(error);
     }
   };
+  const sortTasks = option =>
+    setTasks(
+      tasks.sort((taskL, taskR) =>
+        option === 'Oldest'
+          ? new Date(taskR.modifiedDate) - new Date(taskL.modifiedDate)
+          : new Date(taskL.modifiedDate) - new Date(taskR.modifiedDate),
+      ),
+    );
 
   return (
     <div className="App">
@@ -87,7 +101,9 @@ function App() {
               placeholder={homePlaceholder}
               tasks={tasks}
               left={left}
+              option={option}
               customSubmitHandler={homeSubmitHandler}
+              dropdownChangeHandler={dropdownChangeHandler}
               updateTask={updateTask}
               removeTask={deleteTask}
               removeTasks={deleteTasks}

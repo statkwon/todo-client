@@ -10,7 +10,9 @@ const Home = ({
   placeholder,
   tasks,
   left,
+  option,
   customSubmitHandler,
+  dropdownChangeHandler,
   updateTask,
   removeTask,
   removeTasks,
@@ -33,6 +35,8 @@ const Home = ({
       {tasks.length ? (
         <TaskList
           tasks={tasks}
+          option={option}
+          dropdownChangeHandler={dropdownChangeHandler}
           updateTask={updateTask}
           removeTask={removeTask}
           removeTasks={removeTasks}
@@ -48,7 +52,9 @@ Home.propTypes = {
   placeholder: PropTypes.string,
   tasks: PropTypes.array,
   left: PropTypes.number,
+  option: PropTypes.string,
   customSubmitHandler: PropTypes.func,
+  dropdownChangeHandler: PropTypes.func,
   updateTask: PropTypes.func,
   removeTask: PropTypes.func,
   removeTasks: PropTypes.func,
